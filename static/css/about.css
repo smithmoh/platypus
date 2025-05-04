@@ -1,0 +1,24 @@
+/* About section */
+.text-primary-green {
+    color: #28a745 !important;
+}
+
+.btn-primary-green {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-primary-green:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+}
+
+.btn-outline-primary-green {
+    color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-outline-primary-green:hover {
+    background-color: #28a745;
+    color: #fff;
+}

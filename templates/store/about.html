@@ -1,0 +1,43 @@
+{% extends 'store/base.html' %}
+{% block title %}About Us{% endblock %}
+{% block content %}
+    <!-- About Us Section -->
+    <section class="py-5">
+        <div class="container">
+            <h1 class="text-center text-primary-green fw-bold mb-4">About Platypus</h1>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <h2 class="text-primary-green mb-3">Our Story</h2>
+                            <p class="lead">
+                                Welcome to Platypus, your one-stop shop for premium products and unforgettable event planning. Founded in 2025, Platypus was born from a passion for delivering high-quality goods and personalized experiences to our customers.
+                            </p>
+                            <p>
+                                Inspired by the unique and versatile nature of the platypus, we aim to combine innovation, quality, and creativity in everything we do. Whether you're shopping for everyday essentials or planning a special event, Platypus is here to make your experience seamless and delightful.
+                            </p>
+                            <h2 class="text-primary-green mb-3">Our Mission</h2>
+                            <p>
+                                At Platypus, our mission is to empower our customers with exceptional products and services. We strive to:
+                            </p>
+                            <ul>
+                                <li>Offer a curated selection of high-quality products at competitive prices.</li>
+                                <li>Provide personalized event planning solutions tailored to your vision and budget.</li>
+                                <li>Ensure a user-friendly shopping experience with fast and reliable delivery.</li>
+                                <li>Build a community of satisfied customers who trust Platypus for all their needs.</li>
+                            </ul>
+                            <h2 class="text-primary-green mb-3">Why Choose Us?</h2>
+                            <p>
+                                Platypus stands out because we care about the details. From our carefully selected product range to our dedicated event inquiry service, we go the extra mile to ensure your satisfaction. Our team is committed to excellence, and we’re always here to help you find what you need.
+                            </p>
+                            <div class="text-center mt-4">
+                                <a href="{% url 'products' %}" class="btn btn-primary-green btn-lg">Shop Now</a>
+                                <a href="{% url 'event_inquiry' %}" class="btn btn-outline-primary-green btn-lg ms-2">Plan an Event</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

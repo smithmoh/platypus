@@ -1,0 +1,56 @@
+{% extends 'store/base.html' %}
+{% load math_filters %}
+{% block content %}
+    <!-- Order Confirmation Section -->
+    <section class="py-5">
+        <div class="container">
+            <h1 class="text-center text-primary-green fw-bold mb-4">Order Confirmed!</h1>
+            <p class="text-center text-muted mb-5">Thank you for your order, {{ order.user.username }}. Your order has been successfully placed.</p>
+            
+            <!-- Order Details -->
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title text-primary-green">Order #{{ order.id }}</h5>
+                    <p class="card-text"><strong>Placed on:</strong> {{ order.created_at|date:"F d, Y H:i" }}</p>
+                    <p class="card-text"><strong>Delivery Address:</strong> {{ order.delivery_address }}</p>
+                    <p class="card-text"><strong>Status:</strong> {{ order.status }}</p>
+                    
+                    <!-- Order Items -->
+                    <h6 class="mt-4 mb-3">Items:</h6>
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Subtotal</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in order.orderitem_set.all %}
+                                <tr>
+                                    <td>{{ item.product.name }} ({{ item.product.volume }})</td>
+                                    <td>{{ item.quantity }}</td>
+                                    <td>Ksh {{ item.price }}</td>
+                                    <td>Ksh {{ item.price|floatformat:2|multiply:item.quantity }}</td>
+                                </tr>
+                            {% empty %}
+                                <tr>
+                                    <td colspan="4" class="text-center">No items in this order.</td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    
+                    <!-- Total Price -->
+                    <h5 class="text-end text-primary-green mt-3">Total: Ksh {{ order.total_price }}</h5>
+                </div>
+            </div>
+            
+            <!-- Continue Shopping -->
+            <div class="text-center mt-4">
+                <a href="{% url 'products' %}" class="btn btn-primary-green btn-lg">Continue Shopping</a>
+            </div>
+        </div>
+    </section>
+{% endblock %}

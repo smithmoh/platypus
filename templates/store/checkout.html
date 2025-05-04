@@ -1,0 +1,12 @@
+{% extends 'store/base.html' %}
+{% block content %}
+    <h1>Checkout</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="delivery_address">Delivery Address</label>
+            <textarea class="form-control" id="delivery_address" name="delivery_address" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Place Order</button>
+    </form>
+{% endblock %}

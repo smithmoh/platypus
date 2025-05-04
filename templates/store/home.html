@@ -1,0 +1,166 @@
+{% extends 'store/base.html' %}
+{% load form_filters %}
+{% block content %}
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <h1 class="display-4 fw-bold">Platypus - Minister of Enjoyment</h1>
+            <p class="lead mb-4">Premium Wines $ Spirits and bespoke events planning.</p>
+            <a href="{% url 'products' %}" class="btn btn-primary-green btn-lg">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Products Carousel -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-primary-green fw-bold mb-4">Featured Products</h2>
+            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    {% for product in featured_products %}
+                        <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="card">
+                                        {% if product.image %}
+                                            <img src="{{ product.image.url }}" class="card-img-top" alt="{{ product.name }}">
+                                        {% endif %}
+                                        <div class="card-body text-center">
+                                            <h5 class="card-title">{{ product.name }}</h5>
+                                            <p class="card-text">{{ product.volume }} - Ksh {{ product.price }}</p>
+                                            <a href="{% url 'add_to_cart' product.id %}" class="btn btn-primary-green">Add to Cart</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% empty %}
+                        <div class="carousel-item active">
+                            <p class="text-center">No featured products available.</p>
+                        </div>
+                    {% endfor %}
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center text-primary-green fw-bold mb-4">Explore Our Categories</h2>
+            <div class="row">
+                {% for category in categories %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ category.name }}</h5>
+                                <p class="card-text">{{ category.description|truncatewords:20 }}</p>
+                                <a href="{% url 'products' %}?category={{ category.id }}" class="btn btn-outline-primary-green">View {{ category.name }}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotions Section -->
+    <section class="py-5">
+        <div class="container">
+            <h2 class="text-center text-primary-green fw-bold mb-4">Special Offers</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Free Ice Package</h5>
+                            <p class="card-text">Get a free ice package with any order above Ksh 1000.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Free Delivery</h5>
+                            <p class="card-text">Enjoy free delivery for orders above Ksh 2500 within Nakuru.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Daily & Weekly Offers</h5>
+                            <p class="card-text">Check our social media for exclusive deals!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Event Planning CTA -->
+    <section class="py-5 bg-primary-green text-white">
+        <div class="container text-center">
+            <h2 class="fw-bold mb-4">Plan Your Next Event with Us</h2>
+            <p class="lead mb-4">From birthdays to corporate events, let Platypus make your occasion unforgettable.</p>
+            <a href="{% url 'event_inquiry' %}" class="btn btn-light btn-lg">Get Started</a>
+        </div>
+    </section>
+
+     <!-- Contact Us Section -->
+     <section class="py-5 bg-light">
+        <div class="container">
+            <h2 class="text-center text-primary-green fw-bold mb-4">Contact Us</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="{{ contact_form.name.id_for_label }}" class="form-label">Name</label>
+                                    {{ contact_form.name|add_class:"form-control" }}
+                                    {% if contact_form.name.errors %}
+                                        <div class="text-danger">{{ contact_form.name.errors }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ contact_form.email.id_for_label }}" class="form-label">Email</label>
+                                    {{ contact_form.email|add_class:"form-control" }}
+                                    {% if contact_form.email.errors %}
+                                        <div class="text-danger">{{ contact_form.email.errors }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ contact_form.message.id_for_label }}" class="form-label">Message</label>
+                                    {{ contact_form.message|add_class:"form-control" }}
+                                    {% if contact_form.message.errors %}
+                                        <div class="text-danger">{{ contact_form.message.errors }}</div>
+                                    {% endif %}
+                                </div>
+                                {% if contact_form.non_field_errors %}
+                                    <div class="text-danger mb-3">{{ contact_form.non_field_errors }}</div>
+                                {% endif %}
+                                <button type="submit" class="btn btn-primary-green btn-lg w-100">Send Message</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-dark text-white text-center">
+        <div class="container">
+            <p>Contact us at: <a href="mailto:ministerplatypushq@gmail.com" class="text-light">ministerplatypushq@gmail.com</a></p>
+            <p>© 2025 Phaust Technologies $ Investment co.ltd. All rights reserved.</p>
+        </div>
+    </footer>
+{% endblock %}

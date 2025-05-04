@@ -1,0 +1,34 @@
+# Python/Django
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+*.sqlite3
+
+# Django
+*.log
+local_settings.py
+migrations/
+*.secret
+*.key
+
+# Static and media files
+staticfiles/
+media/
+
+# VS Code
+.vscode/
+
+# macOS
+.DS_Store
+
+# Heroku
+Procfile
+requirements.txt
+runtime.txt

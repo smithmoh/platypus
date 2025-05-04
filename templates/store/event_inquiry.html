@@ -1,0 +1,60 @@
+{% extends 'store/base.html' %}
+{% load form_filters %}
+{% block content %}
+    <!-- Event Inquiry Section -->
+    <section class="py-5">
+        <div class="container">
+            <h1 class="text-center text-primary-green fw-bold mb-4">Plan Your Event</h1>
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body">
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="mb-3">
+                                    <label for="{{ form.event_date.id_for_label }}" class="form-label">Event Date</label>
+                                    {{ form.event_date|add_class:"form-control" }}
+                                    {% if form.event_date.errors %}
+                                        <div class="text-danger">{{ form.event_date.errors }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.event_type.id_for_label }}" class="form-label">Event Type</label>
+                                    {{ form.event_type|add_class:"form-control" }}
+                                    {% if form.event_type.errors %}
+                                        <div class="text-danger">{{ form.event_type.errors }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.budget.id_for_label }}" class="form-label">Budget (Ksh)</label>
+                                    {{ form.budget|add_class:"form-control" }}
+                                    {% if form.budget.errors %}
+                                        <div class="text-danger">{{ form.budget.errors }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.guest_count.id_for_label }}" class="form-label">Guest Count</label>
+                                    {{ form.guest_count|add_class:"form-control" }}
+                                    {% if form.guest_count.errors %}
+                                        <div class="text-danger">{{ form.guest_count.errors }}</div>
+                                    {% endif %}
+                                </div>
+                                <div class="mb-3">
+                                    <label for="{{ form.details.id_for_label }}" class="form-label">Details</label>
+                                    {{ form.details|add_class:"form-control" }}
+                                    {% if form.details.errors %}
+                                        <div class="text-danger">{{ form.details.errors }}</div>
+                                    {% endif %}
+                                </div>
+                                {% if form.non_field_errors %}
+                                    <div class="text-danger mb-3">{{ form.non_field_errors }}</div>
+                                {% endif %}
+                                <button type="submit" class="btn btn-primary-green btn-lg w-100">Submit Inquiry</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
