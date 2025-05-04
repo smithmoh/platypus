@@ -107,13 +107,13 @@ WSGI_APPLICATION = 'platypus_ecommerce.wsgi.application'
 #}
 
 DATABASES = {
-    'default': dj_database_url.config(default=env('DATABASE_URL'))
-    #'default': dj_database_url.config(
-    #    default='postgres://platypus_user:Haust@localhost:5432/platypus_db',
-    #    conn_max_age=600,
-    #    ssl_require=not DEBUG
-    #)
+    'default': dj_database_url.config(
+        default=env('DATABASE_URL'),
+        conn_max_age=600,
+        ssl_require=not DEBUG
+    )
 }
+
 
 
 # Password validation
