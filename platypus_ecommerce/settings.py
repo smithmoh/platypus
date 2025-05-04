@@ -24,7 +24,7 @@ SECRET_KEY = 'django-insecure-rs6gx*h)egp%g6t@j0@82p3x#1lhf=t%hx6b%ia13o6%!3@lqn
 DEBUG = env.bool('DEBUG', default=False)
 
 #ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'your-domain.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'platypus-3lge.onrender.com']
 
 #Authenticating users
 AUTH_USER_MODEL = 'users.CustomUser'
