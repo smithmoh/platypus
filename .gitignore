@@ -30,5 +30,4 @@ media/
 
 # Heroku
 Procfile
-requirements.txt
 runtime.txt
