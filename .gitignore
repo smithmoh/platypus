@@ -9,7 +9,6 @@ venv/
 ENV/
 env.bak/
 venv.bak/
-*.sqlite3
 
 # Django
 *.log
@@ -31,3 +30,4 @@ media/
 # Heroku
 Procfile
 runtime.txt
+.env
