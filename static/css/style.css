@@ -119,6 +119,20 @@ a {
     width: calc(100% - 2rem);
 }
 
+/* Default cart badge styling */
+.nav-item .badge {
+    font-size: 0.75rem;
+    padding: 0.35em 0.5em;
+    line-height: 1;
+    min-width: 20px;
+    min-height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+
 /* Logo Styling Enhancements */
 .navbar-brand img {
     transition: transform 0.3s ease, opacity 0.3s ease;
@@ -144,6 +158,8 @@ a {
     text-align: center;
     position: relative;
     overflow: hidden;
+    background-repeat: no-repeat;
+    padding: 100px 0;
 }
 
 .hero-section::before {
@@ -264,6 +280,9 @@ a {
 
 /* Responsive Adjustments */
 @media (max-width: 992px) {
+    .hero-section {
+        background-image: url('/static/images/logo.png'); 
+    }
     .hero-section h1 {
         font-size: 2.8rem;
     }
@@ -271,12 +290,23 @@ a {
     .hero-section .lead {
         font-size: 1.25rem;
     }
+
+    .nav-item .badge {
+        font-size: 0.6rem;
+        min-width: 16px;
+        min-height: 16px;
+        padding: 0.25em 0.4em;
+        top: 2px !important;
+        left: 10% !important;
+        transform: translate(-50%, -50%);
+    }
 }
 
 @media (max-width: 768px) {
     .hero-section {
         min-height: 70vh;
-        background-attachment: scroll;
+        /*background-attachment: scroll; */
+        background-image: url('/static/images/logo.png'); 
     }
     
     .hero-section h1 {
@@ -289,6 +319,16 @@ a {
     
     .navbar-dark .navbar-nav .nav-link::after {
         display: none;
+    }
+
+    .nav-item .badge {
+        font-size: 0.6rem;
+        min-width: 16px;
+        min-height: 16px;
+        padding: 0.25em 0.4em;
+        top: 2px !important;
+        left: 5% !important;
+        transform: translate(-50%, -50%);
     }
 }
 
@@ -305,6 +345,16 @@ a {
     .btn-outline-primary-green {
         padding: 0.5rem 1rem;
         font-size: 0.9rem;
+    }
+
+    .nav-item .badge {
+        font-size: 0.6rem;
+        min-width: 16px;
+        min-height: 16px;
+        padding: 0.25em 0.4em;
+        top: 2px !important;
+        left: 10% !important;
+        transform: translate(-50%, -50%);
     }
 }
 

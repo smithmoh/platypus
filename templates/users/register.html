@@ -47,6 +47,11 @@
                                     {% if form.password2.errors %}
                                         <div class="text-danger">{{ form.password2.errors }}</div>
                                     {% endif %}
+                                    <!-- Show Password Checkbox -->
+                                    <div class="form-check mt-2">
+                                        <input class="form-check-input" type="checkbox" id="showPasswordToggle">
+                                        <label class="form-check-label" for="showPasswordToggle">Show Password</label>
+                                    </div>
                                 </div>
                                 {% if form.non_field_errors %}
                                     <div class="text-danger mb-3">{{ form.non_field_errors }}</div>
@@ -60,4 +65,19 @@
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('showPasswordToggle');
+            const password1 = document.querySelector('input[name="{{ form.password1.name }}"]');
+            const password2 = document.querySelector('input[name="{{ form.password2.name }}"]');
+
+            toggle.addEventListener('change', function () {
+                const type = this.checked ? 'text' : 'password';
+                if (password1) password1.type = type;
+                if (password2) password2.type = type;
+            });
+        });
+    </script>
+
 {% endblock %}
